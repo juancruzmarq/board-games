@@ -51,17 +51,12 @@ function App() {
         "
           >
             <li>
-              <Link to="/tateti">Tateti</Link>
+              <Link to="/">Tateti</Link>
             </li>
             <li>
               <Link to="/memo">Memo</Link>
             </li>
-            <li>
-              <Link to="/memo">Memo</Link>
-            </li>
-            <li>
-              <Link to="/memo">Memo</Link>
-            </li>
+
             <button
               className="
             absolute
@@ -89,7 +84,7 @@ function App() {
       </header>
 
       <Routes>
-        <Route element={<Tateti theme={theme} />} path="/tateti" />
+        <Route element={<Tateti theme={theme} />} path="*" />
         <Route element={<Memo theme={theme} />} path="/memo" />
       </Routes>
       {/* <div
