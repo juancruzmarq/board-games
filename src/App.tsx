@@ -43,7 +43,7 @@ function App() {
           flex-row
           items-center
           justify-between
-          font-bold
+            font-bold
           text-lg
           text-gray-100
           gap-3

@@ -142,7 +142,7 @@ export function Tateti({ theme }: TatetiProps) {
           </div>
         ))}
       </div>
-      <div className="container ">
+      <div className="container">
         <div className="flex flex-col items-center justify-center">
           {winner == null && !draw && (
             <div className="flex justify-center items-center gap-2">
