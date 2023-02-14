@@ -26,7 +26,7 @@ export function Memo({ theme }: MemoProps) {
     .flatMap((animal) => [animal, animal])
     .sort(() => Math.random() - 0.5);
 
-  const [time, setTime] = useState<number>(2);
+  const [time, setTime] = useState<number>(60);
   const [cards, setCards] = useState(animals);
   const [guessed, setGuessed] = useState<string[]>([]);
   const [selected, setSelected] = useState<number[]>([]);
@@ -36,15 +36,17 @@ export function Memo({ theme }: MemoProps) {
     if (selected.length === 2) {
       if (cards[selected[0]].id === cards[selected[1]].id) {
         setGuessed([...guessed, cards[selected[0]].id]);
-      }
-      setTimeout(() => {
         setSelected([]);
-      }, 1000);
+      } else {
+        setTimeout(() => {
+          setSelected([]);
+        }, 900);
+      }
     }
   }, [selected]);
 
   const checkWinner = (guessed: (string | null)[]) => {
-    if (guessed.length === 16) {
+    if (guessed.length === 8) {
       return true;
     }
     return false;
@@ -70,17 +72,21 @@ export function Memo({ theme }: MemoProps) {
   };
 
   useEffect(() => {
+    let interval: number = 0;
     if (play) {
-      const interval = setInterval(() => {
+      interval = setInterval(() => {
         setTime((time) => time - 1);
       }, 1000);
-      return () => clearInterval(interval);
+    } else {
+      clearInterval(interval);
     }
-  }, [play]);
+    return () => clearInterval(interval);
+  }, [play, guessed]);
 
   useEffect(() => {
     if (time === 0) {
       setPlay(false);
+      setGuessed([]);
     }
   }, [time]);
 
@@ -90,7 +96,7 @@ export function Memo({ theme }: MemoProps) {
         <div className="justify-center items-center flex flex-col">
           <h2
             className={`${
-              theme ? "text-gray-300" : "text-gray-800"
+              theme ? "text-gray-300" : "text-gray-500"
             } text-4xl font-bold`}
           >
             {time}
@@ -99,21 +105,19 @@ export function Memo({ theme }: MemoProps) {
         <div
           className={`${
             theme ? "bg-gray-800" : "bg-gray-100"
-          } text-gray-300 grid grid-flow-row grid-cols-4 grid-rows-4 gap-4 p-4`}
+          }  grid grid-flow-row grid-cols-4 grid-rows-4 gap-4 p-4`}
         >
           {cards.map((card, index) => (
             <div
               key={index}
-              className={`${
-                theme ? "bg-gray-700" : "bg-gray-200"
-              } text-gray-900 flex justify-center items-center w-20 h-20 rounded-lg shadow-md`}
+              className={`flex justify-center items-center w-20 h-20 rounded-lg shadow-md`}
             >
               {guessed.includes(card.id) || selected.includes(index) ? (
                 <button
                   className={`${
                     theme
-                      ? "bg-gray-400 text-gray-100"
-                      : "bg-gray-200 text-gray-800 "
+                      ? "bg-gray-500 text-gray-200"
+                      : "bg-gray-200 text-gray-500 "
                   } flex  justify-center text-6xl items-center  rounded-lg shadow-md w-full h-full
                   `}
                 >
@@ -123,10 +127,10 @@ export function Memo({ theme }: MemoProps) {
                 <button
                   className={`${
                     theme
-                      ? "bg-gray-400 text-gray-100"
-                      : "bg-gray-200 text-gray-800"
-                  } text-gray-800 flex justify-center font-semibold text-6xl items-center w-full h-full rounded-lg shadow-lg
-                  hover:bg-gray-300 hover:text-gray-800 transition duration-500 ease-in-out`}
+                      ? "bg-gray-500 text-gray-100"
+                      : "bg-gray-200 text-gray-500"
+                  }  flex justify-center font-semibold text-6xl items-center w-full h-full rounded-lg shadow-lg
+                  hover:bg-gray-300 hover:text-gray-500 transition duration-500 ease-in-out`}
                   onClick={() => handleClick(index)}
                   disabled={
                     selected.includes(index) ||
@@ -155,6 +159,7 @@ export function Memo({ theme }: MemoProps) {
                 onClick={() => {
                   setTime(60);
                   setPlay(true);
+                  setGuessed([]);
                 }}
               >
                 Play

@@ -127,15 +127,17 @@ export function Tateti({ theme }: TatetiProps) {
                 key={cellIndex}
                 onClick={() => handleCellClick(rowIndex, cellIndex)}
                 className={`w-24 h-24 group flex items-center justify-center rounded-lg ${
-                  theme ? "bg-gray-100" : "bg-gray-200"
-                } px-4 py-3 shadow-[-2px_-2px_10px_rgba(255,255,255,1),3px_3px_10px_rgba(0,0,0,0.2)] active:shadow-[inset_-2px_-2px_5px_rgba(255,255,255,0.7),inset_3px_3px_5px_rgba(0,0,0,0.1)]
-                active:bg-gray-300 hover:bg-gray-200 hover:zoom-140 transition-all duration-300 ease-in-out hover:shadow-[inset_-2px_-2px_5px_rgba(255,255,255,0.7),inset_3px_3px_5px_rgba(0,0,0,0.1)]`}
+                  theme
+                    ? "bg-gray-100 text-gray-500"
+                    : "bg-gray-500 text-gray-100"
+                } px-4 py-3 shadow-lg transform 
+                active:bg-gray-300 hover:bg-gray-200 hover:zoom-140 transition-all duration-300 ease-in-out`}
               >
                 {cell === 1 && (
-                  <GiPawn className="text-4xl  font-bold  text-gray-600 flex text-center" />
+                  <GiPawn className="text-4xl  font-bold  flex text-center" />
                 )}
                 {cell === 2 && (
-                  <BiCoffeeTogo className="text-4xl font-bold text-gray-600 flex text-center" />
+                  <BiCoffeeTogo className="text-4xl font-bold flex text-center" />
                 )}
               </button>
             ))}
