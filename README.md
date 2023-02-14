@@ -44,7 +44,7 @@
 ##### Clone the repository and install the dependencies.
 
 ```bash
-git clone
+git clone https://github.com/juancruzmarq/board-games.git
 cd board-games
 npm install
 ```
