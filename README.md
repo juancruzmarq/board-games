@@ -9,8 +9,6 @@
     width: 100%;
     margin-bottom: 1rem;
     margin-top: 1rem;
-    border-radius: 0.5rem;
-    border: 1px solid #eaeaea;
     padding: 1rem;
 ">
 <h2>Web</h2>
@@ -18,7 +16,8 @@
     src="./public/web.png"
     alt="Board Games"
     width="100%"
-    style="margin-bottom: 1rem; align-self: center;"
+    style="margin-bottom: 1rem; align-self: center;border-radius: 0.5rem;
+    border: 4px solid #eaeaea;"
 />
 <h2>Mobile</h2>
 <img
@@ -30,6 +29,7 @@
     width="30%"
 />
 </div>
+
 ### Description
 
 <p
