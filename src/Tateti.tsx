@@ -1,4 +1,4 @@
-import { MouseEventHandler, useState } from "react";
+import { useState } from "react";
 import { GiPawn } from "react-icons/gi";
 import { BiCoffeeTogo } from "react-icons/bi";
 
@@ -102,11 +102,8 @@ export function Tateti({ theme }: TatetiProps) {
     <main className="flex flex-col">
       <div className="flex justify-center">
         <h1
-          className={`text-4xl tracking-widest mb-4 ${
-            theme ? "text-gray-200" : "text-gray-500"
-          }
+          className={`text-4xl mb-4 ${theme ? "text-gray-200" : "text-gray-500"}
             font-extrabold
-            
           `}
         >
           TATETI
@@ -128,10 +125,10 @@ export function Tateti({ theme }: TatetiProps) {
                 onClick={() => handleCellClick(rowIndex, cellIndex)}
                 className={`w-24 h-24 group flex items-center justify-center rounded-lg ${
                   theme
-                    ? "bg-gray-100 text-gray-500"
+                    ? "bg-gray-100 text-gray-600"
                     : "bg-gray-500 text-gray-100"
                 } px-4 py-3 shadow-lg transform 
-                active:bg-gray-300 hover:bg-gray-200 hover:zoom-140 transition-all duration-300 ease-in-out`}
+                active:bg-gray-300 hover:bg-gray-500/80 hover:zoom-140 transition-all duration-300 ease-in-out`}
               >
                 {cell === 1 && (
                   <GiPawn className="text-4xl  font-bold  flex text-center" />

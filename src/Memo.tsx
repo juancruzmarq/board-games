@@ -26,7 +26,9 @@ export function Memo({ theme }: MemoProps) {
     .flatMap((animal) => [animal, animal])
     .sort(() => Math.random() - 0.5);
 
-  const [time, setTime] = useState<number>(60);
+  let initialTime = 60;
+
+  const [time, setTime] = useState<number>(initialTime);
   const [cards, setCards] = useState(animals);
   const [guessed, setGuessed] = useState<string[]>([]);
   const [selected, setSelected] = useState<number[]>([]);
@@ -62,7 +64,7 @@ export function Memo({ theme }: MemoProps) {
     setCards(animals);
     setGuessed([]);
     setSelected([]);
-    setTime(60);
+    setTime(initialTime);
     setPlay(false);
   };
 
@@ -89,6 +91,13 @@ export function Memo({ theme }: MemoProps) {
       setGuessed([]);
     }
   }, [time]);
+
+  const handlePlay = () => {
+    setTime(initialTime);
+    setPlay(true);
+    setGuessed([]);
+    setSelected([]);
+  };
 
   return (
     <>
@@ -156,11 +165,7 @@ export function Memo({ theme }: MemoProps) {
             ) : (
               <button
                 className="bg-gray-600 p-4 rounded-lg text-lg font-bold text-gray-200 w-[30%] shadow-lg"
-                onClick={() => {
-                  setTime(60);
-                  setPlay(true);
-                  setGuessed([]);
-                }}
+                onClick={handlePlay}
               >
                 Play
               </button>
