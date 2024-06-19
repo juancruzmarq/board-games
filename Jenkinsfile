@@ -42,25 +42,6 @@ pipeline {
         }
     }
 
-    post {
-        always {
-            cleanWs()
-        }
-    }
-
-    stage('Build') {
-      steps {
-        sh 'npm run build'
-      }
-    }
-
-    stage('Deploy') {
-      steps {
-        sh 'npm run preview'
-      }
-    }
-
-  }
   post {
     always {
       cleanWs()
